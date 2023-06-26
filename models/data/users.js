@@ -1,5 +1,5 @@
 import "dotenv/config.js"
-import "../../config/database.js"
+import "../../config/db.js"
 import User from "../User.js"
 
 let users = [{

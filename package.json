@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "users": "node ./models/data/users.js",
+    "authors": "node ./models/data/authors.js",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "categories": "node ./models/data/categories.js"
