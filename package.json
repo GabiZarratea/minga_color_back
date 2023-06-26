@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "users": "node ./models/data/users.js",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "categories": "node ./models/data/categories.js"
