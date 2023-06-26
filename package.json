@@ -6,9 +6,9 @@
   "scripts": {
     "users": "node ./models/data/users.js",
     "authors": "node ./models/data/authors.js",
+    "categories": "node ./models/data/categories.js",
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www",
-    "categories": "node ./models/data/categories.js"
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
