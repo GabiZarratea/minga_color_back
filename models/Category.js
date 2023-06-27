@@ -8,7 +8,7 @@ let schema = new Schema({ //defino el primer objeto con las propiedades necesari
     description: {type: String},
     cover_photo: {type: String, required: true},
     character_photo:{type: String},
-    admin_id:{type: String, required:true}
+    admin_id:{type: Types.ObjectId, required:true, ref:'users'}
 } , {
     timestamps: true
 })
