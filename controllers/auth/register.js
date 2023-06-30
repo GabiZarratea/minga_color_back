@@ -17,9 +17,7 @@ export default async( req, res ) => {
         //Devolver una respuesta exitosa
         return res.status(201).json({ response: one, success: true , message: 'User created successfully'})
     }
-    catch{
-        //Manejar errores
-        console.error(error)
-        return res.status(500).json({ response: one, success: true , message: 'A server error has occurred'})
+    catch(error){
+        next(error)
     }
 }
