@@ -12,7 +12,7 @@ const userRegister = joi.object({
     password: joi.string()
                  .required()
                  .min(8)
-                 .max(35)
+                 .max(10)
                  .alphanum()
                  .messages({
                     'any.required':'NAME_REQUIRED',
@@ -30,8 +30,10 @@ const userRegister = joi.object({
               }),
     role: joi.number()
              .required()
+             .max(35)
              .messages({
-                'any.required':'NAME_REQUIRED'
+                'any.required':'NAME_REQUIRED',
+                'string.max':'NAME_TOO_LARGE'
              }),
     online: joi.boolean(),
     verified: joi.boolean()

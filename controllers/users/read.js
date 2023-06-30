@@ -1,4 +1,4 @@
-export default function(req,res){
+export default function(req,res,next){
     try{
         return res.status(200).json({
             success:true,
@@ -7,10 +7,6 @@ export default function(req,res){
         })
     }
     catch(error){
-        return res.status(500).json({
-            success:false,
-            response:null,
-            message:error.message
-        })
+        next(error)
     }
 }
