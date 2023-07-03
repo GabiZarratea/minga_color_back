@@ -7,14 +7,22 @@ import auth_router from './users.js';
 
 let router = express.Router();
 
+// const printTime =  (req, res, next)  => {
+//   console.log("Time ", new Date())
+//   next()
+// }
+
+// router.use(printTime)
+
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/pepito',)
 router.use('/authors',author_router)
 router.use('/categories',category_router)
 router.use('/mangas',manga_router)
 router.use('/chapters',chapter_router)
 router.use('/auth',auth_router)
 
-export default router;
+export default router
