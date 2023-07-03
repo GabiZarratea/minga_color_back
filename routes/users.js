@@ -6,7 +6,6 @@ import validator from '../middlewares/validator.js'
 import userRegister from '../schemas/auth/register.js'
 import signin from '../controllers/auth/signin.js'
 import userSignin from '../schemas/auth/userSigninSchema.js';
-import validator from '../middlewares/validator.js';
 import accountNotExist from '../middlewares/accountNotExist.js';
 import passwordIsOk from '../middlewares/passwordIsOk.js';
 import generateToken from '../middlewares/generateToken.js';

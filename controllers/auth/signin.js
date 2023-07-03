@@ -11,7 +11,10 @@ export default async(req,res,next)=> {
         return res.status(200).json({
             success:true,
             message:'user signed in!',
-            response: {user: one}
+            response: {
+                user: one,
+                token: req.token
+            }
         })
     } catch (error) {
         return next()
