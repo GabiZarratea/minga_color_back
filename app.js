@@ -7,6 +7,9 @@ import {__dirname} from './utils.js' //importo la configuracion de la ruta padre
 import indexRouter from './routes/index.js'; //enrutador principal de la aplicacion
 import cors from 'cors' //modulo para permitir origenes cruzados (front con el back)
 
+import notFoundHandler from './middlewares/notFoundHandler.js';
+import errorHandler from './middlewares/errorHandler.js';
+
 
 let app = express(); //defino una variable con la ejecucion del modulo de express para poder crear un servidor
 
@@ -26,5 +29,9 @@ app.use(cors()) //obliga al servidor a permitir el cruce de origenes de front/ba
 
 //ENDPOINTS
 app.use('/api', indexRouter); //obliga al servidor a usar las rutas definidas en el enrutador principal con la palabrita '/api'
+
+app.use(notFoundHandler)
+app.use(errorHandler)
+
 
 export default app; 
