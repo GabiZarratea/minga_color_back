@@ -9,6 +9,9 @@ import cors from 'cors' //modulo para permitir origenes cruzados (front con el b
 import notFoundHandler from './middlewares/notFoundHandler.js';
 import errorHandler from './middlewares/errorHandler.js';
 
+import notFoundHandler from './middlewares/notFoundHandler.js';
+import errorHandler from './middlewares/errorHandler.js';
+
 
 let app = express(); //defino una variable con la ejecucion del modulo de express para poder crear un servidor
 
