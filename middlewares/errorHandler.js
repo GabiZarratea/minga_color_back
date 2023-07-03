@@ -1,9 +1,8 @@
-const errorHandler = (err, req, res, next) => {
-    console.log(err)
-    
-    return res.status(err.status || 500).json({
-        statusCode: err.status,
-        message: err.mesagge
+const errorHandler = (error,req,res,next) => {
+    console.log(error)
+    return res.status(error.status || 500).json({
+        statusCode: error.status,
+        messages: error.message
     })
 }
 
