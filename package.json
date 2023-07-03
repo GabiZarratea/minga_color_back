@@ -7,7 +7,7 @@
     "users": "node ./models/data/users.js",
     "authors": "node ./models/data/authors.js",
     "categories": "node ./models/data/categories.js",
-    "data": "node ./models/data/data.js",    
+    "data": "node ./models/data/data.js",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
   },
@@ -19,8 +19,11 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.3.1",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1"
   }
 }
