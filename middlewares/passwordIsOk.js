@@ -10,9 +10,10 @@ export default async(req, res, next)=> {
             return next()
         }
         return res.status(400).json({
-            response: null, message: 'Invalid credentials!'
+            response: null, 
+            message: 'Invalid credentials!'
         })
     } catch (error) {
-        
+        return next(error)
     }
 }
