@@ -9,10 +9,10 @@ import accountNotExist from '../middlewares/accountNotExist.js';
 import passwordIsOk from '../middlewares/passwordIsOk.js';
 import generateToken from '../middlewares/generateToken.js';
 
-let auth_router = Router()
+let auth_router = Router();
 
 auth_router.get('/', read)
 auth_router.post('/register', validator(userRegister), register)
 auth_router.post('/signin', validator(userSignin), accountNotExist,passwordIsOk,generateToken, signin)
 
-export default auth_router
+export default auth_router;
