@@ -20,7 +20,7 @@ const userRegister = joi.object({
     password: joi.string()
                  .required()
                  .min(8)
-                 .max(10)
+                 .max(35)
                  .alphanum()
                  .messages({
                     'any.required':'NAME_REQUIRED',
