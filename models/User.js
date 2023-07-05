@@ -11,10 +11,10 @@ let schema = new Schema({ //defino el primer objeto con las propiedades necesari
     email: {type: String, required: true},
     password: {type: String, required: true},
     photo: {type: String, required: true},
-    role:{type: Number, required: true},
-    online:{type: Boolean},
-    verified:{type: Boolean, required: true},
-    verify_code:{type: String, required: true}
+    role:{type: Number, default:0},
+    online:{type: Boolean, default:false},
+    verified:{type: Boolean, default: true}, //en el sprint 5 esto cambia a false y se debe verificar la cuenta con el codigo de verificación
+    verify_code:{type: String}
 } , {
     timestamps: true
 })
