@@ -21,6 +21,7 @@ const userRegister = joi.object({
                  .required()
                  .min(8)
                  .max(35)
+
                  .alphanum()
                  .messages({
                     'any.required':'NAME_REQUIRED',
