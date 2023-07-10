@@ -5,7 +5,7 @@ export default async (req, res, next) => {
         let one = await User.findOneAndUpdate(
             { email:req.user.email },
             { online:false },
-            { neq:true }
+            { new:true }
         )
         return res.status(200).json({
             success: true,
