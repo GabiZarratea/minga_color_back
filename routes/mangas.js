@@ -2,6 +2,7 @@ import Router from 'express';
 import read_one from '../controllers/mangas/read_one.js';
 import passport from '../middlewares/passport.js';
 import read from '../controllers/mangas/read.js'
+import readOne from '../controllers/mangas/readOne.js';
 import orderExists from "../middlewares/exists_order.js";
 import createMangaController from "../controllers/mangas/create.js";
 import verifyAuthor from "../middlewares/isPropertyOf.js";
