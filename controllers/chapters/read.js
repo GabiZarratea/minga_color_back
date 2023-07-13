@@ -6,8 +6,6 @@ export default async (req, res) => {
 
   const page = parseInt(req.query.page) || 1 // Obtener el número de página que se quiere ver o usar 1 por defecto
   
-  console.log(page)
-  
   const limit = 6 // Número de capítulos por página
 
   try {
@@ -18,7 +16,7 @@ export default async (req, res) => {
 
     const chapters = await Chapter.find({manga_id: mangaId})
 
-      .select('-_id -manga_id -pages -createdAt -updatedAt -__v')
+      .select(' -manga_id -pages -createdAt -updatedAt -__v')
       .sort({ order: 1 }) // Ordenar los capítulos por "order" de forma ascendente
       .skip((page - 1) * limit) // Saltar los capítulos anteriores a la página actual
       .limit(limit) // Limitar el número de capítulos a mostrar por página
