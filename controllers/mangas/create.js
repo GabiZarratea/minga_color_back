@@ -2,6 +2,7 @@ import Manga from "../../models/Manga.js";
 
 let create = async (req, res, next) => {
   try {
+    console.log("Aaaaaaaaaaaaaaaaaaaaaaaaaaa");
     const { title, cover_photo, category_id, description, author_id } = req.body;
     console.log(req.body);
     const manga = new Manga({
@@ -9,7 +10,7 @@ let create = async (req, res, next) => {
       category_id,
       cover_photo,
       description,
-      author_id
+      author_id,
     });
 
     await manga.save();
