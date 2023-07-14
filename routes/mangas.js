@@ -8,8 +8,8 @@ import passport from "../middlewares/passport.js";
 const manga_router = Router();
 
 // manga_router.post() 
-manga_router.get('/:id', read_one) 
-// manga_router.post() //crea un autor
+manga_router.get('/:id', passport.authenticate("jwt", { session: false }), read_one) 
+// manga_router.post() //crea un manga
 manga_router.get('/', passport.authenticate("jwt", { session: false }), read) //leer uno o todos
 manga_router.post("/create", passport.authenticate("jwt", { session: false }), createMangaController);
 

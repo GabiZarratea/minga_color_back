@@ -24,7 +24,8 @@ export default async (req, res) => {
     const response = {
         chapters: chapters,
         currentPage: page,
-        totalPages: totalPages
+        totalPages: totalPages,
+        totalChapters: totalChapters
     }
 
     if (page > 1) {
