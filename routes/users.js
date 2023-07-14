@@ -12,6 +12,7 @@ import accountNotExist from '../middlewares/accountNotExist.js';
 import passwordIsOk from '../middlewares/passwordIsOk.js';
 import generateToken from '../middlewares/generateToken.js';
 import passport from '../middlewares/passport.js';
+import signintoken from '../controllers/auth/signintoken.js'
 
 
 let auth_router = Router()
@@ -19,6 +20,7 @@ let auth_router = Router()
 auth_router.get('/', read)
 auth_router.post('/register', validator(userRegister), accountExists, createHash, register)
 auth_router.post('/signin', validator(userSignin), accountNotExist,passwordIsOk,generateToken, signin)
+auth_router.get('/signintoken', passport.authenticate('jwt', { session:false }), signintoken)
 auth_router.post('/signout', passport.authenticate('jwt', { session:false }), signout)
 
 export default auth_router

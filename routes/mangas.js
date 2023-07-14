@@ -10,7 +10,7 @@ const manga_router = Router();
 // manga_router.post() 
 manga_router.get('/:id', read_one) 
 // manga_router.post() //crea un autor
-manga_router.get('/', read) //leer uno o todos
+manga_router.get('/', passport.authenticate("jwt", { session: false }), read) //leer uno o todos
 manga_router.post("/create", passport.authenticate("jwt", { session: false }), createMangaController);
 
 export default manga_router;
