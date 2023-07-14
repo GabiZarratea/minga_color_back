@@ -1,11 +1,10 @@
 import Chapter from "../../models/Chapter.js";
-import passport from "../../middlewares/passport.js";
 
 const readOneController = async (req, res) => {
   try {
     const mangaId = req.query.manga_id;
     const chapterId = req.params.id;
-    const page = parseInt(req.query.page) || 1; // Obtener el número de página que se quiere ver o usar 1 por defecto
+    const page = parseInt(req.query.page) || 1; // obtiene  numero de pagina que se quiere ver o usa 1 por defecto
     const limit = 6; // Número de capítulos por página
     // console.log(mangaId, chapterId, "ASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
     // Aquí puedes realizar las validaciones y proteger los datos necesarios
@@ -31,20 +30,16 @@ const readOneController = async (req, res) => {
     // .skip((page - 1) * limit); // Saltar los capítulos anteriores a la página actual
     // .limit(limit); // Limitar el número de capítulos a mostrar por página
 
-    // Obtener el capítulo siguiente (puedes implementar tu lógica aquí)
-
     const nextChapter = await Chapter.findOne({
       manga_id: mangaId,
       order: chapter[0].order + 1,
     });
-    // Configurar las propiedades estándar y la propiedad chapter en la respuesta
     const responseData = {
       title: chapter[0].title,
       pages: chapter[0].pages,
       mangaId: chapter[0].manga_id,
     };
     console.log(chapter, "responsedata");
-    // Enviar la respuesta con los datos y las páginas del capítulo
     if (!nextChapter) {
       res.status(200).json({ chapter: responseData, nextChapter: null });
     }
@@ -54,7 +49,6 @@ const readOneController = async (req, res) => {
     // , nextChapter: nextChapter._id
     // })(req, res);
   } catch (error) {
-    // Manejar el error en caso de que ocurra
     // console.error(error);
     res.status(500).json({ error });
   }
