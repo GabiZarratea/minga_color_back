@@ -6,11 +6,10 @@ import readOneController from "../controllers/chapters/read_one.js";
 
 let chapter_router = Router();
 
-// chapter_router.post() //crea un autor
-chapter_router.get("/", read);
+chapter_router.get('/', passport.authenticate("jwt", { session: false }), read)
 chapter_router.post("/chapters", verifyAuthor);
-chapter_router.get("/:id", passport.authenticate("jwt", { session: false }), readOneController); //
-//passport.authenticate("jwt", { session: false }),
+chapter_router.get("/:id", passport.authenticate("jwt", { session: false }), readOneController);
+
 // chapter_router.purge() //actualizar un autor
 // chapter_router.delete() //elimina un autor
 

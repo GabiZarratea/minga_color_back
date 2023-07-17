@@ -20,11 +20,12 @@ export default async (req, res) => {
       .limit(limit); // Limitar el número de capítulos a mostrar por página
 
     const response = {
-      chapters: chapters,
-      currentPage: page,
-      totalPages: totalPages,
-    };
-
+        chapters: chapters,
+        currentPage: page,
+        totalPages: totalPages,
+        totalChapters: totalChapters
+    }
+    
     if (page > 1) {
       response.prev = true;
       response.next = false;

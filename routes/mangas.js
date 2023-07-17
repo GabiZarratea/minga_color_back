@@ -10,11 +10,10 @@ import mangaExists from "../middlewares/mangaExists.js";
 
 const manga_router = Router();
 
-// manga_router.post()
-manga_router.get("/:id", read_one);
-// manga_router.post() //crea un autor
-manga_router.get("/", passport.authenticate("jwt", { session: false }), read); //leer uno o todos
-manga_router.post("/", validator(mangaCreate), passport.authenticate("jwt", { session: false }), has_permission, mangaExists, createMangaController);
-//passport.authenticate("jwt", { session: false }),
-//
+manga_router.get('/:id', passport.authenticate("jwt", { session: false }), read_one) 
+// manga_router.post() //crea un manga
+manga_router.get('/', passport.authenticate("jwt", { session: false }), read) //leer uno o todos
+manga_router.post("/create", passport.authenticate("jwt", { session: false }), createMangaController);
+manga_router.post("/", validator(mangaCreate), passport.authenticate("jwt", { session: false }), has_permission, mangaExists, createMangaController)
+
 export default manga_router;
