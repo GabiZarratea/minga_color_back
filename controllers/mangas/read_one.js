@@ -1,13 +1,13 @@
 import Manga from "../../models/Manga.js"
 
 // Controlador para ver un manga específico basado en su ID
-export default async (req, res) => {
+export default async (req, res, next) => {
     
   const mangaId = req.params.id
 
   try {
     const manga = await Manga.findById(mangaId)
-    .select('title cover_photo description category_id -_id')
+    .select('title cover_photo description -_id')
     .populate({
       path: 'category_id',
       select: 'name -_id'
@@ -24,10 +24,7 @@ export default async (req, res) => {
      })
   } 
   catch (error) {
-     console.error(error)
-     res.status(500).json({ 
-        message: 'Manga not found' 
-    })
+     next(error)
   }
 }
 
