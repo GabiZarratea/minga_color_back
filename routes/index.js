@@ -18,7 +18,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/pepito',)
 router.use('/authors',author_router)
 router.use('/categories',category_router)
 router.use('/mangas',manga_router)

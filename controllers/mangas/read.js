@@ -1,5 +1,3 @@
-// En el archivo 'read.js'
-
 import Manga from '../../models/Manga.js';
 
 async function read(req, res, next) {

@@ -1,6 +1,6 @@
 import Manga from "../../models/Manga.js";
 
-let create = async (req, res, next) => {
+let createMangaController = async (req, res, next) => {
   try {
     console.log("Aaaaaaaaaaaaaaaaaaaaaaaaaaa");
     const { title, cover_photo, category_id, description, author_id } = req.body;
@@ -26,4 +26,4 @@ let create = async (req, res, next) => {
   }
 };
 
-export default create;
+export default createMangaController;

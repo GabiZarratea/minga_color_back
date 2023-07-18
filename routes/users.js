@@ -13,6 +13,9 @@ import passwordIsOk from '../middlewares/passwordIsOk.js';
 import generateToken from '../middlewares/generateToken.js';
 import passport from '../middlewares/passport.js';
 import signintoken from '../controllers/auth/signintoken.js'
+import { changeUserRoleToAuthor } from '../controllers/auth/changerole.js'
+import finds_id from '../middlewares/finds_id.js'
+import User from '../models/User.js'
 
 
 let auth_router = Router()
@@ -22,5 +25,6 @@ auth_router.post('/register', validator(userRegister), accountExists, createHash
 auth_router.post('/signin', validator(userSignin), accountNotExist,passwordIsOk,generateToken, signin)
 auth_router.get('/signintoken', passport.authenticate('jwt', { session:false }), signintoken)
 auth_router.post('/signout', passport.authenticate('jwt', { session:false }), signout)
+auth_router.put('/role/author/:id', finds_id(User), changeUserRoleToAuthor )
 
 export default auth_router

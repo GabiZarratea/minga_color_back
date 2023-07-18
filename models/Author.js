@@ -7,7 +7,7 @@ let schema = new Schema({ //defino el primer objeto con las propiedades necesari
     city: {type: String},
     date: {type: Date},
     photo: {type: String, required: true},
-    active:{type: Boolean},
+    active:{type: Boolean, default:false},
     user_id:{type: Types.ObjectId, required:true, ref:'users'}
 } , {
     timestamps: true
