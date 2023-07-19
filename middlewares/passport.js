@@ -15,7 +15,6 @@ export default passport.use(
       try {
         let user = await User.findOne({ email: jwt_payload.email });
         if (user) {
-          console.log(user, "useeer");
           delete user.password;
           return done(null, user);
         } else {
