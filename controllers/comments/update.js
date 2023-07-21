@@ -18,11 +18,12 @@ const update = async (req, res, next) => {
 
         comment.text = text;
         await comment.save()
+        let newComment = await comment.populate('user_id')
 
         return res.status(200).json({
             success: true,
             message: "Comment updated successfully",
-            comment: comment,
+            comment: newComment,
           })
     }
     catch(error){

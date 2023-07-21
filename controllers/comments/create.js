@@ -2,17 +2,19 @@ import Comment from "../../models/Comment.js"
 
 let create = async (req, res, next) => {
   try {
-    const { chapter_id , text } = req.body
+    const { text } = req.body
 
-    if (!chapter_id) {
+    if (!req.query.chapter_id) {
       return res.status(400).json({ error: "The chapter_id field is required." });
     }
 
-    const comment = new Comment({
-      chapter_id,
+    const comment = await Comment.create ({
+      chapter_id: req.query.chapter_id,
       user_id: req.user._id,
       text
     })
+    
+    let newComment = await comment.populate('user_id')
 
     console.log(req.user)
 
@@ -20,12 +22,10 @@ let create = async (req, res, next) => {
 
     const { email } = req.user
 
-    await comment.save()
-
     return res.status(201).json({
-      success: "ok",
+      success: true,
       message: "new comment from " + email + ": " + "'" + text + "'",
-      timestamps: comment.createdAt,
+      comment: newComment
     })
   } catch (error) {
     console.log(error);

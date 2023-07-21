@@ -13,9 +13,9 @@ export default async (req, res) => {
 
     const totalPages = Math.ceil(totalComments / limit)
 
-    const comments = await Comment.find({ chapter_id: chapterId })
-    .select("text -_id")  
-    .sort({ createdAt: 1 })
+    const comments = await Comment.find({ chapter_id: chapterId }) 
+    .populate("user_id") 
+    .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit)
 
