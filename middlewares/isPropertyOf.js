@@ -1,34 +1,24 @@
-import createHttpError from 'http-errors'
-import Manga from "../models/Manga.js"
+import Manga from "../models/Manga.js";
 
-const verifyAuthor = async (req, res, next) => {
-    try {
-      // Obtengo el titulo 'mandado'
-      const manga_id = req.body.manga_id
-  
-      // Si en el objeto req de requerimietnos existe la propiedad 'author' con todos los datos del autor
-      if (req.author) {
-        const manga = await Manga.findOne({ _id: manga_id , author_id:  req.author._id})
-            //Busco el manga que sea de este autor y tenga el id del manga al cual se le quiere agregar un capitulo
-            if(manga){
-                return next()
-            }
-            return next(createHttpError(403, 'You do not have permission to add a chapter to this manga.'))
-        }
-      // Si en el objeto req de requerimietnos existe la propiedad 'company' con todos los datos de la empresa
-      if (req.company) {
-        const manga = await Manga.findOne({ _id: manga_id , company_id:  req.company._id})
-            //Busco el manga que sea de esta empresa y tenga el id del manga al cual se le quiere agregar un capitulo
-            if(manga){
-                return next()
-            }
-            return next(createHttpError(403, 'You do not have permission to add a chapter to this manga.'))
-        }
-        return next(createHttpError(403, 'You do not have permission to add a chapter to this manga.'))
-    } 
-    catch(error){
-        next(error)
+async function is_property_of(req, res, next) {
+  try {
+    //console.log(req);
+    let manga = await Manga.findOne({
+      manga_id: req.body.manga_id,
+      author_id: req.body.author_id,
+    });
+    //console.log(manga);
+    if (manga) {
+      return next();
     }
+    return res.status(404).json({
+      success: false,
+      message: ["The manga or author does not belong to the logged in author"],
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
 }
-  
-export default verifyAuthor
+
+export default is_property_of;

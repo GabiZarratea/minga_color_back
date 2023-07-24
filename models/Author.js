@@ -1,18 +1,25 @@
-import {Schema, Types, model} from 'mongoose'
+import { Schema, model, Types } from "mongoose";
 
-let collection = 'authors' //los nombres de la colecciones van siempre en plural (porque son un conjunto de), van siemore en ingles y tienen que ser descriptivos del recurso (ej.. recurso: category => coleccion: categories)
-let schema = new Schema({ //defino el primer objeto con las propiedades necesarias para el modelo
-    name: {type: String, required: true},
-    last_name: {type: String},
-    city: {type: String},
-    date: {type: Date},
-    photo: {type: String, required: true},
-    active:{type: Boolean},
-    user_id:{type: Types.ObjectId, required:true, ref:'users'}
-} , {
-    timestamps: true
-})
+let schema = new Schema(
+  {
+    name: { type: String, required: true },
+    last_name: { type: String, required: false },
+    city: { type: String, required: true },
+    country: { type: String, required: false }, //change to test
+    date: { type: Date, required: false },
+    photo: { type: String, required: true },
+    active: { type: Boolean, required: true },
+    user_id: {
+      type: Types.ObjectId,
+      ref: "auths",
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-let Author = model(collection, schema)
-
-export default Author
+let collection = "authors";
+let Author = model(collection, schema);
+export default Author;

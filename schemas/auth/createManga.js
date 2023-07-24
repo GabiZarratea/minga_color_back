@@ -20,11 +20,11 @@ const mangaCreate = Joi.object({
     "string.uri": "Invalid URL",
   }),
 
-  description: Joi.string().min(10).max(350).required().messages({
+  description: Joi.string().min(10).max(600).required().messages({
     "any.required": "Description is required",
     "string.empty": "Description is required",
     "string.min": "Description is too short",
-    "string.max": "Description is too large",
+    "string.max": "Description is too long",
   }),
 
   category_id: Joi.objectId().messages({
