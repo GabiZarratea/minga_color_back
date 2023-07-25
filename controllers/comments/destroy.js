@@ -8,22 +8,22 @@ const destroy = async (req, res, next) => {
 
     console.log(token);
 
-    const comment = await Comment.findById({_id: commentId})
+    // Usamos findByIdAndDelete para buscar y eliminar el comentario directamente
+    const deletedComment = await Comment.findByIdAndDelete(commentId)
 
-    if (!comment) {
+    if (!deletedComment) {
+      // El comentario no existe
       return next(createHttpError(404, 'Comment not found'));
     }
 
-    await Comment.deleteOne({ _id: commentId })
-
-      return res.status(200).json({
-        success: true,
-        message: "Comment deleted successfully",
-      });
-    }
-    catch (error) {
+    return res.status(200).json({
+      success: true,
+      message: "Comment deleted successfully",
+    });
+  } catch (error) {
     next(error);
-    }
+  }
 };
 
 export default destroy;
+

@@ -8,13 +8,6 @@ import comment_router from './comments.js';
 
 let router = express.Router();
 
-// const printTime =  (req, res, next)  => {
-//   console.log("Time ", new Date())
-//   next()
-// }
-
-// router.use(printTime)
-
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
