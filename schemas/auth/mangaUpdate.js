@@ -1,18 +1,20 @@
 import Joi from "joi";
 
 const mangaUpdate = Joi.object({
-  title: Joi.string().min(4).max(30).message({
-    "string.min": "The title must contain a minimum of 4 characters.",
-    "string.max": "The title should be no longer than 30 characters.",
-    "string.required": "The title is required.",
+  title: Joi.string().min(3).max(30).required().messages({
+    "any.required": "Title is required",
+    "string.empty": "Title is required",
+    "string.min": "Title is too short",
+    "string.max": "Title is too long",
   }),
-  description: Joi.string().min(10).message({
-    "string.min": "The description must consist of a minimum of 10 characters.",
-    "string.empty": "The description is required.",
+  description: Joi.string().min(10).max(600).required().messages({
+    "any.required": "Description is required",
+    "string.empty": "Description is required",
+    "string.min": "Description is too short",
+    "string.max": "Description is too long",
   }),
-  cover_photo: Joi.string().uri().message({
-    "string.uri": "Invalid url",
-  }),
+  cover_photo: Joi.string().uri(),
+
   category_id: Joi.optional(),
 });
 

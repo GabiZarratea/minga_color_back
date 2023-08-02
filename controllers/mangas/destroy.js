@@ -3,12 +3,12 @@ import Chapter from "../../models/Chapter.js";
 
 const destroy = async (req, res, next) => {
   try {
-    let destroyed = await Manga.findOneAndDelete({ _id: req.params.id });
+    let destroyed = await Manga.findOneAndDelete({ _id: req.params.id }); //metodo mongoose for delete
     if (destroyed) {
       await Chapter.deleteMany({ manga_id: req.params.id });
       return res.status(200).json({
         success: true,
-        message: "Manga deleted.",
+        message: "Manga and chapters deleted.",
         destroyed,
       });
     } else {

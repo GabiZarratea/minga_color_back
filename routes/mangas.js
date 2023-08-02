@@ -14,15 +14,17 @@ import mangaUpdate from "../schemas/auth/mangaUpdate.js";
 import is_active from "../middlewares/isActive.js";
 import is_property_of from "../middlewares/isPropertyOf.js";
 import destroy from "../controllers/mangas/destroy.js";
-// import mangasFromAuthor from "../middlewares/get_mangas_from_author.js";
+import uploadMangaCover from "../middlewares/uploadMangaCover.js";
+import { uploadMangaCoverSVC } from "../services/firebase.cjs";
 
 const manga_router = Router();
-
+//"/" parametro de ruta
 manga_router.get("/me", passport.authenticate("jwt", { session: false }), finds_id, get_me);
 manga_router.get("/:id", read_one);
-manga_router.get("/", passport.authenticate("jwt", { session: false }), read); //leer uno o todos
-manga_router.post("/", validator(mangaCreate), passport.authenticate("jwt", { session: false }), has_permission, mangaExists, createMangaController);
+manga_router.post("/", uploadMangaCover(), uploadMangaCoverSVC, passport.authenticate("jwt", { session: false }), has_permission, mangaExists, createMangaController);
+manga_router.get("/", passport.authenticate("jwt", { session: false }), read);
 manga_router.put("/:id", validator(mangaUpdate), passport.authenticate("jwt", { session: false }), validator(mangaUpdate), finds_id, is_active, is_property_of, update);
 manga_router.delete("/:id", passport.authenticate("jwt", { session: false }), finds_id, is_active, is_property_of, destroy);
 
 export default manga_router;
+// validator(mangaCreate),

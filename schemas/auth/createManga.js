@@ -14,11 +14,7 @@ const mangaCreate = Joi.object({
     "string.max": "Title is too long",
   }),
 
-  cover_photo: Joi.string().uri().required().messages({
-    "any.required": "Image URL is required",
-    "string.empty": "Image URL is required",
-    "string.uri": "Invalid URL",
-  }),
+  cover_photo: Joi.string().uri(),
 
   description: Joi.string().min(10).max(600).required().messages({
     "any.required": "Description is required",

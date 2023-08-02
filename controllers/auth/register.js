@@ -1,15 +1,22 @@
-import User from '../../models/User.js'
+import User from "../../models/User.js";
 
-export default async( req, res, next ) => {
-    try{
+export default async (req, res, next) => {
+  try {
+    const { email, password, photo } = req.body;
+    const firebaseUrl = req.file ? req.file.firebaseUrl : null;
+    // console.log(firebaseUrl, "firebaseurlregisteeeeeeeeeeeeeeeeeeeeeeeeeeer");
 
-        //Traer los datos del formulario/Postman
-        const one = await User.create(req.body)
+    const newUser = {
+      email,
+      password,
+      // photo,
+      photo: firebaseUrl,
+    };
 
-        //Devolver una respuesta exitosa
-        return res.status(201).json({ response: one, success: true , message: 'User created successfully'})
-    }
-    catch(error){
-        next(error)
-    }
-}
+    const createdUser = await User.create(newUser);
+
+    return res.status(201).json({ response: createdUser, success: true, message: "User created successfully" });
+  } catch (error) {
+    next(error);
+  }
+};

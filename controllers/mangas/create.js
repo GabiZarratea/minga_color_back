@@ -2,13 +2,17 @@ import Manga from "../../models/Manga.js";
 
 let create = async (req, res, next) => {
   try {
-    console.log("Aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    console.log(req.body, "Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     const { title, cover_photo, category_id, description, author_id } = req.body;
+    const firebaseUrl = req.file ? req.file.firebaseUrl : null;
+    // console.log(req.file, "firebaseurlpooooooooooooooooooooooooooooooost");
+
     console.log(req.body);
     const manga = new Manga({
       title,
       category_id,
-      cover_photo,
+      // cover_photo, //solo para test
+      cover_photo: firebaseUrl,
       description,
       author_id,
     });

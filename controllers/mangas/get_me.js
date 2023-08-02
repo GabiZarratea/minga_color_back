@@ -2,8 +2,9 @@ import Manga from "../../models/Manga.js";
 
 let get_me = async (req, res, next) => {
   try {
-    console.log(req.body, "reqBodyssssssssssssssssss");
-    const mangas = await Manga.find({ author_id: req.body.author_id }).populate("author_id", "name -_id").populate("category_id");
+    // console.log(req.body, "reqBody");
+    const mangas = await Manga.find({ author_id: req.body.author_id }).populate("author_id", "name -_id").populate("category_id"); //populate fn de mongoose b
+    //busca todos los mangas con el mismo authorID
     if (mangas) {
       console.log(mangas, "mangas");
       return res.status(200).json({
